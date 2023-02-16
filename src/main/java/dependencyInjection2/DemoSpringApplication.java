@@ -1,4 +1,4 @@
-package dependencyInjection;
+package dependencyInjection2;
 
 import ComponentAnnotation.MathComponent;
 import ServiceAnnotation.MathService;
@@ -7,6 +7,7 @@ import annotations.DataBaseDriver;
 import annotations.UserService;
 import beanAnnotations.MyDAOBean;
 import beanAnnotations.MyFileSystemBean;
+import dependencyInjection.MyApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -57,12 +58,17 @@ public class DemoSpringApplication{
 //		int result = ms.add(1, 2);
 //		System.out.println("Addition of 1 and 2 = " + result);
 //
-//		context3.close();
-		AnnotationConfigApplicationContext cntx= new AnnotationConfigApplicationContext();
-		cntx.scan("dependencyInjection");
-		cntx.refresh();
-		MyApplication app=cntx.getBean(MyApplication.class);
-		app.processMessage("hi ali","tddg@gmail.com");
-		cntx.close();
+	//	context3.close();
+//		AnnotationConfigApplicationContext cntx= new AnnotationConfigApplicationContext();
+//		cntx.scan("dependencyInjection");
+//		cntx.refresh();
+//		MyApplication app=cntx.getBean(MyApplication.class);
+//		app.processMessage("hi ali","tddg@gmail.com");
+//		cntx.close();
+		AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext();
+		ctx.scan("dependencyInjection2");
+		ctx.refresh();
+		MyClientExm client=(MyClientExm) ctx.getBean("client1");
+		client.dosomethinh();
 	}
 }
